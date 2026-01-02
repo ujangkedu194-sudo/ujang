@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Kamu ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 10;
+            max-width: 80%;
+            position: relative;
+        }
+
+        h1 {
+            color: #ff4b6e;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        p {
+            color: #555;
+            font-size: 1.2em;
+            line-height: 1.6;
+            display: none; /* Disembunyikan dulu */
+        }
+
+        .btn {
+            background-color: #ff4b6e;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 75, 110, 0.4);
+        }
+
+        /* Animasi Hati */
+        .heart {
+            position: absolute;
+            top: -10vh;
+            color: #ff4b6e;
+            font-size: 20px;
+            animation: fall linear forwards;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Ganti Nama di sini -->
+        <h1 id="title">Hai, Sayang!</h1>
+        
+        <!-- Tombol untuk membuka pesan -->
+        <button class="btn" onclick="bukaHadiah()">Klik untuk Buka Hadiah 🎁</button>
+
+        <!-- Pesan yang akan muncul -->
+        <div id="message-box">
+            <p id="message">
+                Terima kasih sudah menjadi bagian terbaik dalam hariku.<br>
+                Semoga hari kamu menyenangkan!<br>
+                <b>I Love You Zureee Sayangg! ❤️</b>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function bukaHadiah() {
+            const btn = document.querySelector('.btn');
+            const msg = document.querySelector('p');
+            const title = document.getElementById('title');
+            
+            // Ubah tampilan
+            btn.style.display = 'none'; // Hilangkan tombol
+            msg.style.display = 'block'; // Munculkan pesan
+            title.innerText = "Surprise! 🎉"; // Ubah judul
+
+            // Mulai hujan hati
+            setInterval(createHeart, 300);
+            
+            // Buat banyak hati di awal
+            for(let i=0; i<10; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            
+            // Posisi random horizontal
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            // Ukuran random
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            
+            // Durasi animasi random (biar tidak barengan)
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            
+            document.body.appendChild(heart);
+
+            // Hapus elemen setelah animasi selesai agar browser tidak berat
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
